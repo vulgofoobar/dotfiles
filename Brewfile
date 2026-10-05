@@ -60,6 +60,7 @@ cask 'nikitabobko/tap/aerospace'
 # cask 'whatsapp'
 
 # .utility
+cask 'anki'
 cask 'stats'
 cask 'appcleaner'
 cask 'balenaetcher'
