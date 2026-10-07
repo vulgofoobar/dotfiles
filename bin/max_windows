@@ -1,0 +1,97 @@
+#!/usr/bin/env ruby
+#
+# Maximize all open windows
+#
+# Window manager script that maximize open windows.
+#
+# OPTIONS:
+#   --help, -h          Show this help message
+#
+# USAGE:
+#   $ ./max_windows
+#   # => Maximize all open windows
+#   $ ./funfact --help
+#   # => Outputs help message
+#
+# OS SUPPORT:
+#   Linux and MacOS
+#  
+# SOURCE:
+#   https://github.com/lsfernandes92/awesome-scripts/
+require 'bundler/inline'
+gemfile do
+  source 'https://rubygems.org'
+  gem 'gum'
+end
+
+require 'gum'
+
+SCRIPT_NAME = Gum.style(
+  './max_windows',
+  foreground: 1,
+)
+
+def show_help
+  help_text = <<~HELP
+    #{
+      Gum.format(<<~HEADER, type: :markdown)
+        # awesome@scripts > /bins > #{SCRIPT_NAME}
+      HEADER
+    }
+  
+    #{
+      Gum.format(<<~MAIN, type: :markdown)
+        # WHAT THIS SCRIPT DO?
+              Maximize all open windows
+            
+              Window manager script that maximize open windows.
+  
+        # OPTIONS:
+              --help, -h          Show this help message
+
+        # USAGE:
+              $ ./max_windows
+              # => Maximize all open windows
+              $ ./max_windows --help
+              # => Outputs help message
+        
+        # OS SUPPORT:
+              Linux and MacOS
+        
+        # SOURCE:
+              https://github.com/lsfernandes92/awesome-scripts/
+      MAIN
+    }  
+  HELP
+  
+  Gum.pager(help_text, soft_wrap: true)
+  exit 0
+end
+
+if ARGV.include?('--help') || ARGV.include?('-h')
+  show_help
+end
+
+system(<<~'COMMAND')
+  osascript <<'SCRIPT'
+  tell application "System Events"
+    repeat with p in (every process whose background only is false)
+      set procName to name of p
+      repeat with w in (windows of p)
+        try
+          if procName is "Surfshark" then
+            set position of w to {320, 150}
+            set size of w to {800, 600}
+          else if procName is in {"Calendar", "Clock"} then
+            set position of w to {240, 150}
+            set size of w to {960, 600}
+          else
+            set position of w to {0, 20}
+            set size of w to {1440, 880}
+          end if
+        end try
+      end repeat
+    end repeat
+  end tell
+  SCRIPT
+COMMAND

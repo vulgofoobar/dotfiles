@@ -1,0 +1,161 @@
+#!/usr/bin/env ruby
+#
+# Almost maximize all open windows
+#
+# Window manager script that almost maximize and center open windows.
+#
+# OPTIONS:
+#   --help, -h          Show this help message
+#
+# USAGE:
+#   $ ./almost_maximize_windows
+#   # => Maximize all open windows
+#   $ ./almost_maximize_windows --help
+#   # => Outputs help message
+#
+# OS SUPPORT:
+#   Linux and MacOS
+#  
+# SOURCE:
+#   https://github.com/lsfernandes92/awesome-scripts/
+require 'bundler/inline'
+gemfile do
+  source 'https://rubygems.org'
+  gem 'gum'
+end
+
+require 'gum'
+
+SCRIPT_NAME = Gum.style(
+  './almost_maximize_windows',
+  foreground: 1,
+)
+
+def show_help
+  help_text = <<~HELP
+    #{
+      Gum.format(<<~HEADER, type: :markdown)
+        # awesome@scripts > /bins > #{SCRIPT_NAME}
+      HEADER
+    }
+  
+    #{
+      Gum.format(<<~MAIN, type: :markdown)
+        # WHAT THIS SCRIPT DO?
+              Almost maximize all open windows
+            
+              Window manager script that almost maximize and center open windows.
+  
+        # OPTIONS:
+              --help, -h          Show this help message
+
+        # USAGE:
+              $ ./almost_maximize_windows
+              # => Maximize all open windows
+              $ ./almost_maximize_windows --help
+              # => Outputs help message
+        
+        # OS SUPPORT:
+              Linux and MacOS
+        
+        # SOURCE:
+              https://github.com/lsfernandes92/awesome-scripts/
+      MAIN
+    }  
+  HELP
+  
+  Gum.pager(help_text, soft_wrap: true)
+  exit 0
+end
+
+if ARGV.include?('--help') || ARGV.include?('-h')
+  show_help
+end
+
+system(<<~'COMMAND')
+  osascript <<'SCRIPT'
+  use framework "AppKit"
+  use scripting additions
+
+  on getScreenRects()
+    set screenList to current application's NSScreen's screens() as list
+    set primaryFrame to (item 1 of screenList)'s frame()
+    set primaryH to (item 2 of item 2 of primaryFrame) as real
+    set rects to {}
+    repeat with s in screenList
+      set vf to s's visibleFrame()
+      set vx to (item 1 of item 1 of vf) as real
+      set vy to (item 2 of item 1 of vf) as real
+      set vw to (item 1 of item 2 of vf) as real
+      set vh to (item 2 of item 2 of vf) as real
+      set topY to primaryH - (vy + vh)
+      set end of rects to {vx, topY, vw, vh}
+    end repeat
+    return rects
+  end getScreenRects
+
+  on screenFor(winPos, winSize, rects)
+    set cxWin to (item 1 of winPos) + (item 1 of winSize) / 2
+    set cyWin to (item 2 of winPos) + (item 2 of winSize) / 2
+    repeat with r in rects
+      set rx to item 1 of r
+      set ry to item 2 of r
+      if cxWin ≥ rx and cxWin < rx + (item 3 of r) and cyWin ≥ ry and cyWin < ry + (item 4 of r) then
+        return contents of r
+      end if
+    end repeat
+    return item 1 of rects
+  end screenFor
+
+  set screenRects to getScreenRects()
+  set extraPerSide to 50
+  set extraBottom to 0
+
+  set fixedApps to {"Surfshark", "Calendar", "Clock"}
+  set boundsMonitor1 to {184, -890, 1144, -190}
+  set boundsMonitor2 to {216, 157, 1223, 744}
+
+  tell application "System Events"
+    repeat with p in (every process whose background only is false)
+      set procName to name of p
+      repeat with w in (windows of p)
+        try
+          set targetRect to my screenFor(position of w, size of w, screenRects)
+          set screenX to item 1 of targetRect
+          set screenY to item 2 of targetRect
+          set screenW to item 3 of targetRect
+          set screenH to item 4 of targetRect
+
+          if procName is in fixedApps then
+            set b1cx to ((item 1 of boundsMonitor1) + (item 3 of boundsMonitor1)) / 2
+            set b1cy to ((item 2 of boundsMonitor1) + (item 4 of boundsMonitor1)) / 2
+            if b1cx ≥ screenX and b1cx < screenX + screenW and b1cy ≥ screenY and b1cy < screenY + screenH then
+              set bnds to boundsMonitor1
+            else
+              set bnds to boundsMonitor2
+            end if
+            set newX to item 1 of bnds
+            set newY to item 2 of bnds
+            set winW to (item 3 of bnds) - (item 1 of bnds)
+            set winH to (item 4 of bnds) - (item 2 of bnds)
+          else
+            set {fracW, fracH} to {0.9, 0.9}
+
+            set winW to round (screenW * fracW) + (extraPerSide * 2)
+            if winW > screenW then set winW to round screenW
+            set newX to screenX + (screenW - winW) / 2
+
+            set baseH to round (screenH * fracH)
+            set newY to screenY + (screenH - baseH) / 2
+            set winH to baseH + extraBottom
+            if newY + winH > screenY + screenH then set winH to round (screenY + screenH - newY)
+          end if
+
+          set size of w to {winW, winH}
+          set position of w to {round newX, round newY}
+        end try
+      end repeat
+    end repeat
+  end tell
+  SCRIPT
+COMMAND
