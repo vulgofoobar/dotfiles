@@ -11,7 +11,7 @@
   // Alternative font family
   // "editor.fontFamily": "ModeSeven, Menlo, Monaco, Monolisa, 'Fira Code', 'Cascadia Code', Hack, monospace",
   "editor.fontFamily": "'Fira Code', Monolisa, 'Cascadia Code', Hack, Monaco, Menlo, monospace",
-  "editor.fontSize": 18,
+  "editor.fontSize": 12,
   "editor.rulers": [80, 120],
   "editor.fontLigatures": true,
   "editor.renderLineHighlight": "gutter",
@@ -24,7 +24,7 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "block",
   "terminal.integrated.fontFamily": "Monaco, 'Fira Code', monospace",
-  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.fontSize": 8,
   "terminal.integrated.fontWeight": "bold",
   "terminal.integrated.defaultLocation": "view",
 
@@ -45,7 +45,8 @@
   "window.commandCenter": false,
   "workbench.startupEditor": "newUntitledFile",
   "workbench.editor.labelFormat": "short",
-  "workbench.activityBar.location": "hidden",
+  // "workbench.activityBar.location": "hidden",
+  "workbench.activityBar.location": "left",
   "workbench.sideBar.location": "left",
   "workbench.tree.renderIndentGuides": "none",
   "workbench.view.alwaysShowHeaderActions": false,
@@ -107,7 +108,7 @@
         {
           "scope": "ref.matchtext",
           "settings": {
-            "foreground": "#000"
+            "foreground": "#0b1510"
           }
         }
       ]
@@ -117,14 +118,12 @@
         {
           "scope": "ref.matchtext",
           "settings": {
-            "foreground": "#fff"
+            "foreground": "#0b1510"
           }
         }
       ]
     }
   },
-  "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:claude-3.5-sonnet",
 
   // Markdown PDF
   "markdown-pdf.headerTemplate": "\"\"",
@@ -134,4 +133,40 @@
     "/Users/ritalee/Documents/desenv/vscode-extensions/markdown-pdf/custom.css"
   ],
   "gitlens.mode.active": "zen",
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "window.confirmSaveUntitledWorkspace": false,
+  "vscode-sonic-pi.sonicPiRootDirectory": "/Applications/Sonic Pi.app/Contents/Resources",
+  "git.openRepositoryInParentFolders": "never",
+  "update.showReleaseNotes": false,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "chat.viewSessions.orientation": "stacked",
+  "docker.extension.enableComposeLanguageServer": false,
+  "claudeCode.preferredLocation": "panel",
+  "terminal.integrated.commandsToSkipShell": [
+    "kilo-code.new.agentManagerOpen",
+    "kilo-code.new.agentManager.showTerminal",
+    "kilo-code.new.agentManager.previousTerminal",
+    "kilo-code.new.agentManager.nextTerminal",
+    "kilo-code.new.agentManager.runScript"
+  ],
+  "kilo-code.new.agentWorkStyle": "human-in-the-loop",
+  "kilo-code.new.showTaskTimeline": true,
 }
