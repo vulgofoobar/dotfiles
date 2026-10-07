@@ -1,0 +1,22 @@
+{
+  "version": "0.24.12",
+  "prefix": ";;",
+  "suffix": "::",
+  "expansionPrefix": "",
+  "expansionLinePrefix": "> ",
+  "expansionSuffix": "\\n\\n",
+  "autocomplete": true,
+  "autocompleteHelp": true,
+  "devMode": false,
+  "allowExternal": false,
+  "shortcutFiles": [],
+  "shortcuts": "\n__\n^next on$\n__\nconst today = new Date();\nconst tomorrow = new Date(today);\ntomorrow.setDate(today.getDate() + 1);\n\nreturn \"next on \" + tomorrow.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });\n__\nnext on - Expands into \"next on\" followed by tomorrow's date.\n\n__\n^date$\n__\nreturn new Date().toLocaleDateString();\n__\ndate - Expands into the current, local date.\n\n__\n^time$\n__\nreturn new Date().toLocaleTimeString();\n__\ntime - Expands into the current, local time.\n\n__\n^datetime$\n__\nreturn new Date().toLocaleString();\n__\ndatetime - Expands into the current, local date and time.\n\n__\n^rb$\n__\nreturn \"```ruby\\n```\"\n__\nrb - Expands into a ruby block of code.\n",
+  "buttonView": {
+    "visible": true,
+    "groups": {
+      "Group 01": {
+        "buttons": []
+      }
+    }
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "main": {
+    "id": "7592f0dd37a41473",
+    "type": "split",
+    "children": [
+      {
+        "id": "b60ed866420a9dcb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0db034432519194c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "01. rough notes/my specs.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "my specs"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "884ffb549277080a",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bf54f9bc8a1c867",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e1d332cbaa2e5995",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "e6067fda7f0aeef6",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": true,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "b632ef3f16030454",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 310.51103591918945,
+    "collapsed": true
+  },
+  "right": {
+    "id": "5bb153f459e8d47a",
+    "type": "split",
+    "children": [
+      {
+        "id": "a48462f2942819a9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "58c5d007e336e0a5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "06. main notes/what is WSL?.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from what is WSL?"
+            }
+          },
+          {
+            "id": "cf168b8df3ec8e74",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "59d8b1b5b8a235a3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "06. main notes/what is WSL?.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of what is WSL?"
+            }
+          },
+          {
+            "id": "da802d4ebc26b32f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "01. rough notes/kickoff Bruno.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "513fd066edbc45cb",
+            "type": "leaf",
+            "state": {
+              "type": "inline-scripts-button-view",
+              "state": {},
+              "icon": "inline-scripts-button-view",
+              "title": "Inline Scripts - Buttons"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:Create new base": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "0db034432519194c",
+  "lastOpenFiles": [
+    "01. rough notes/mental shit.md",
+    "01. rough notes/side quests (archived).md",
+    "06. main notes/spaced repetition.md",
+    "01. rough notes/daily information digest.md",
+    "06. main notes/what's a matrix?.md",
+    "06. main notes/what's an array characteristics?.md",
+    "06. main notes/what's an array?.md",
+    "01. rough notes/how to test rubric?.md",
+    "01. rough notes/dificuldades entrevista com IA.md",
+    "01. rough notes/boycott companies agressively list.md",
+    "01. rough notes/boombap 🦆.md",
+    "01. rough notes/90s jungle.md",
+    "01. rough notes/3d assets notes.md",
+    "01. rough notes/System Design Interview - A Step-By-Step Guide.md",
+    "01. rough notes/the task's git repository is corrupted.md",
+    "01. rough notes/what is a beat?.md",
+    "01. rough notes/what's codeberg?.md",
+    "01. rough notes/today todo list.md",
+    "01. rough notes/what are prepositions?.md",
+    "01. rough notes/snare technique.md",
+    "01. rough notes/linkedin query search.md",
+    "01. rough notes/introduction to model context protocol.md",
+    "01. rough notes/interview questions.md",
+    "01. rough notes/how to torrent.md",
+    "01. rough notes/get started making music.md",
+    "01. rough notes/getting started with rails.md",
+    "Untitled 2",
+    "Untitled 1",
+    "questions on how to evaluate",
+    "Untitled",
+    "what's few-shot",
+    "tailscale_android 1.png",
+    "tailscale_iphone 1.png",
+    "tailscale_iphone.png",
+    "tailscale_android.png",
+    "save_the_date.jpeg",
+    "Pasted image 20251009214349.png",
+    "07. clippings/Pasted image 20251007150951.png",
+    "Pasted image 20250804114455.png",
+    "07. clippings/Pasted image 20251007145024.png",
+    "01. rough notes/Untitled.base",
+    "Screenshot 16.png",
+    "01. rough notes/how to practice vocabulary.html",
+    "01. rough notes/how to practice vocabulary.pdf",
+    "dependency inversion",
+    "02. source materials/piece of wisdom",
+    "Untitled.canvas"
+  ]
+}

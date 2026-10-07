@@ -1,0 +1,13 @@
+{
+  "cssTheme": "",
+  "accentColor": "#ffd302",
+  "textFontFamily": "ModeSeven,Fira Code",
+  "showRibbon": true,
+  "enabledCssSnippets": [
+    "side_dock_actions",
+    "side_dock"
+  ],
+  "baseFontSize": 20,
+  "theme": "obsidian",
+  "interfaceFontFamily": "ModeSeven"
+}

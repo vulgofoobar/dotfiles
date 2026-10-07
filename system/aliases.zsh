@@ -5,13 +5,11 @@ alias brew-update!='brew update; brew upgrade; brew cleanup'
 alias software-update!='sudo softwareupdate -ia --verbose'
 alias update!='brew-update! && software-update! && mas upgrade'
 alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
-alias backup!='mtmrbackup; vscodebackup; karabinerbackup; sketchybarbackup'
+alias backup!='mtmrbackup; vscodebackup; karabinerbackup; sketchybarbackup; obsidianbackup'
 
 # cli utility
-# displays scrolling digital rain
-# matrix-style effect
-# in terminal
-# https://github.com/abishekvashok/cmatrix
+# displays scrolling digital rain matrix-style effect in terminal
+# source: https://github.com/abishekvashok/cmatrix
 alias matrix="cmatrix -s"
 
 # navigation shortcuts

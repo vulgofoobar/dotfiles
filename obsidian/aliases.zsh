@@ -1,0 +1,1 @@
+alias obsidianbackup='cp -r "$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/Vault 32/.obsidian" "$HOME/.dotfiles/obsidian"'
