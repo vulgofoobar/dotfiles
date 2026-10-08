@@ -3,6 +3,8 @@
 # Almost maximize all open windows
 #
 # Window manager script that almost maximize and center open windows.
+# This is tailored to my two-monitor setup.
+# It may need some tweaks.
 #
 # OPTIONS:
 #   --help, -h          Show this help message
@@ -14,10 +16,13 @@
 #   # => Outputs help message
 #
 # OS SUPPORT:
-#   Linux and MacOS
+#   MacOS
 #  
 # SOURCE:
 #   https://github.com/lsfernandes92/awesome-scripts/
+#   
+# WEBSITE:
+#   https://awesome-scripts.vercel.app/index.html
 require 'bundler/inline'
 gemfile do
   source 'https://rubygems.org'
@@ -45,6 +50,8 @@ def show_help
               Almost maximize all open windows
             
               Window manager script that almost maximize and center open windows.
+              This is tailored to my two-monitor setup.
+              It may need some tweaks.
   
         # OPTIONS:
               --help, -h          Show this help message
@@ -56,10 +63,13 @@ def show_help
               # => Outputs help message
         
         # OS SUPPORT:
-              Linux and MacOS
+              MacOS
         
         # SOURCE:
               https://github.com/lsfernandes92/awesome-scripts/
+
+        # WEBSITE:
+          https://awesome-scripts.vercel.app/index.html
       MAIN
     }  
   HELP
@@ -74,85 +84,41 @@ end
 
 system(<<~'COMMAND')
   osascript <<'SCRIPT'
-  use framework "AppKit"
-  use scripting additions
+  on windowCenterY(w)
+    tell application "System Events"
+      set {winX, winY} to position of w
+      set {winW, winH} to size of w
+    end tell
+    return winY + winH / 2
+  end windowCenterY
 
-  on getScreenRects()
-    set screenList to current application's NSScreen's screens() as list
-    set primaryFrame to (item 1 of screenList)'s frame()
-    set primaryH to (item 2 of item 2 of primaryFrame) as real
-    set rects to {}
-    repeat with s in screenList
-      set vf to s's visibleFrame()
-      set vx to (item 1 of item 1 of vf) as real
-      set vy to (item 2 of item 1 of vf) as real
-      set vw to (item 1 of item 2 of vf) as real
-      set vh to (item 2 of item 2 of vf) as real
-      set topY to primaryH - (vy + vh)
-      set end of rects to {vx, topY, vw, vh}
-    end repeat
-    return rects
-  end getScreenRects
-
-  on screenFor(winPos, winSize, rects)
-    set cxWin to (item 1 of winPos) + (item 1 of winSize) / 2
-    set cyWin to (item 2 of winPos) + (item 2 of winSize) / 2
-    repeat with r in rects
-      set rx to item 1 of r
-      set ry to item 2 of r
-      if cxWin ≥ rx and cxWin < rx + (item 3 of r) and cyWin ≥ ry and cyWin < ry + (item 4 of r) then
-        return contents of r
-      end if
-    end repeat
-    return item 1 of rects
-  end screenFor
-
-  set screenRects to getScreenRects()
-  set extraPerSide to 50
-  set extraBottom to 0
-
-  set fixedApps to {"Surfshark", "Calendar", "Clock"}
-  set boundsMonitor1 to {184, -890, 1144, -190}
-  set boundsMonitor2 to {216, 157, 1223, 744}
+  on externalMonitor(w)
+    return windowCenterY(w) < 0
+  end externalMonitor
 
   tell application "System Events"
     repeat with p in (every process whose background only is false)
       set procName to name of p
       repeat with w in (windows of p)
         try
-          set targetRect to my screenFor(position of w, size of w, screenRects)
-          set screenX to item 1 of targetRect
-          set screenY to item 2 of targetRect
-          set screenW to item 3 of targetRect
-          set screenH to item 4 of targetRect
-
-          if procName is in fixedApps then
-            set b1cx to ((item 1 of boundsMonitor1) + (item 3 of boundsMonitor1)) / 2
-            set b1cy to ((item 2 of boundsMonitor1) + (item 4 of boundsMonitor1)) / 2
-            if b1cx ≥ screenX and b1cx < screenX + screenW and b1cy ≥ screenY and b1cy < screenY + screenH then
-              set bnds to boundsMonitor1
+          if my externalMonitor(w) then
+            if procName is in {"Surfshark", "Calendar", "Clock"} then
+              set position of w to {184, -890}
+              set size of w to {960, 700}
             else
-              set bnds to boundsMonitor2
+              set position of w to {-200, -1026}
+              set size of w to {1728, 972}
             end if
-            set newX to item 1 of bnds
-            set newY to item 2 of bnds
-            set winW to (item 3 of bnds) - (item 1 of bnds)
-            set winH to (item 4 of bnds) - (item 2 of bnds)
+          else if procName is "Surfshark" then
+            set position of w to {320, 150}
+            set size of w to {800, 600}
+          else if procName is in {"Calendar", "Clock"} then
+            set position of w to {240, 150}
+            set size of w to {960, 600}
           else
-            set {fracW, fracH} to {0.9, 0.9}
-
-            set winW to round (screenW * fracW) + (extraPerSide * 2)
-            if winW > screenW then set winW to round screenW
-            set newX to screenX + (screenW - winW) / 2
-
-            set baseH to round (screenH * fracH)
-            set newY to screenY + (screenH - baseH) / 2
-            set winH to baseH + extraBottom
-            if newY + winH > screenY + screenH then set winH to round (screenY + screenH - newY)
+            set position of w to {72, 45}
+            set size of w to {1296, 810}
           end if
-
-          set size of w to {winW, winH}
-          set position of w to {round newX, round newY}
         end try
       end repeat
     end repeat
