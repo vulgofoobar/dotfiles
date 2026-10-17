@@ -1,0 +1,103 @@
+#!/usr/bin/env ruby
+#
+# Configure yabai window manager
+#
+# Install yabai and save sketchybar top space.
+# This is tailored to my two-monitor setup.
+# It may need some tweaks.
+#
+# OPTIONS:
+#   --help, -h          Show this help message
+#
+# USAGE:
+#   $ ./.config-yabai
+#   # => Installs and configures yabai
+#   $ ./.config-yabai --help
+#   # => Outputs help message
+#
+# OS SUPPORT:
+#   MacOS
+#
+# SOURCE:
+#   https://github.com/lsfernandes92/awesome-scripts/
+#
+# WEBSITE:
+#   https://awesome-scripts.vercel.app/index.html
+require 'bundler/inline'
+gemfile do
+  source 'https://rubygems.org'
+  gem 'gum'
+end
+
+require 'gum'
+
+SCRIPT_NAME = Gum.style('./config-yabai', foreground: 1)
+
+def show_help
+  help_text = <<~HELP
+    #{
+      Gum.format(<<~HEADER, type: :markdown)
+        # awesome@scripts > /bins > #{SCRIPT_NAME}
+      HEADER
+    }
+
+    #{
+      Gum.format(<<~MAIN, type: :markdown)
+        # WHAT THIS SCRIPT DO?
+              Configure yabai window manager
+
+              Install yabai and save sketchybar top space.
+              This is tailored to my two-monitor setup.
+              It may need some tweaks.
+
+        # OPTIONS:
+              --help, -h          Show this help message
+
+        # USAGE:
+              $ ./config-yabai
+              # => Installs and configures yabai
+              $ ./config-yabai --help
+              # => Outputs help message
+
+        # OS SUPPORT:
+              MacOS
+
+        # SOURCE:
+              https://github.com/lsfernandes92/awesome-scripts/
+
+        # WEBSITE:
+              https://awesome-scripts.vercel.app/index.html
+      MAIN
+    }
+  HELP
+
+  Gum.pager(help_text, soft_wrap: true)
+  exit 0
+end
+
+if ARGV.include?('--help') || ARGV.include?('-h')
+  show_help
+end
+
+def install_yabai_if_missing
+  return if system('command -v yabai > /dev/null 2>&1')
+
+  puts "yabai not found. Installing..."
+  system('brew tap koekeishiya/formulae') or exit 1
+  system('brew tap-pin koekeishiya/formulae') or true
+  system('brew install yabai') or exit 1
+end
+
+def configure_yabai
+  commands = [
+    'yabai -m config layout float',
+    'yabai -m config auto_balance on',
+    'yabai -m config external_bar all:0:20',
+    'yabai -m config top_padding 0'
+  ]
+
+  commands.each { |cmd| system(cmd) or exit 1 }
+end
+
+install_yabai_if_missing
+configure_yabai

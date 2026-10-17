@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 #
-# Maximize all open windows
+# Almost maximize all open windows
 #
-# Window manager script that maximize open windows.
+# Window manager script that almost maximize and center open windows.
 # This is tailored to my two-monitor setup.
 # It may need some tweaks.
 #
@@ -10,17 +10,17 @@
 #   --help, -h          Show this help message
 #
 # USAGE:
-#   $ ./max_windows
+#   $ ./almost-maximize-windows
 #   # => Maximize all open windows
-#   $ ./funfact --help
+#   $ ./almost-maximize-windows--help
 #   # => Outputs help message
 #
 # OS SUPPORT:
 #   MacOS
-#  
+#
 # SOURCE:
 #   https://github.com/lsfernandes92/awesome-scripts/
-#   
+#
 # WEBSITE:
 #   https://awesome-scripts.vercel.app/index.html
 require 'bundler/inline'
@@ -31,7 +31,10 @@ end
 
 require 'gum'
 
-SCRIPT_NAME = Gum.style('./max_windows', foreground: 1)
+SCRIPT_NAME = Gum.style(
+  './almost-maximize-windows',
+  foreground: 1,
+)
 
 def show_help
   help_text = <<~HELP
@@ -40,37 +43,37 @@ def show_help
         # awesome@scripts > /bins > #{SCRIPT_NAME}
       HEADER
     }
-  
+
     #{
       Gum.format(<<~MAIN, type: :markdown)
         # WHAT THIS SCRIPT DO?
-              Maximize all open windows
-            
-              Window manager script that maximize open windows.
+              Almost maximize all open windows
+
+              Window manager script that almost maximize and center open windows.
               This is tailored to my two-monitor setup.
               It may need some tweaks.
-  
+
         # OPTIONS:
               --help, -h          Show this help message
 
         # USAGE:
-              $ ./max_windows
+              $ ./almost-maximize-windows
               # => Maximize all open windows
-              $ ./max_windows --help
+              $ ./almost-maximize-windows--help
               # => Outputs help message
-        
+
         # OS SUPPORT:
               MacOS
-        
+
         # SOURCE:
               https://github.com/lsfernandes92/awesome-scripts/
 
         # WEBSITE:
-              https://awesome-scripts.vercel.app/index.html
+          https://awesome-scripts.vercel.app/index.html
       MAIN
-    }  
+    }
   HELP
-  
+
   Gum.pager(help_text, soft_wrap: true)
   exit 0
 end
@@ -78,6 +81,8 @@ end
 if ARGV.include?('--help') || ARGV.include?('-h')
   show_help
 end
+
+system(File.expand_path('./config-yabai', __dir__)) or exit 1
 
 system(<<~'COMMAND')
   osascript <<'SCRIPT'
@@ -103,8 +108,8 @@ system(<<~'COMMAND')
               set position of w to {184, -890}
               set size of w to {960, 700}
             else
-              set position of w to {-296, -1058}
-              set size of w to {1920, 1058}
+              set position of w to {-200, -1026}
+              set size of w to {1728, 972}
             end if
           else if procName is "Surfshark" then
             set position of w to {320, 150}
@@ -113,8 +118,8 @@ system(<<~'COMMAND')
             set position of w to {240, 150}
             set size of w to {960, 600}
           else
-            set position of w to {0, 23}
-            set size of w to {1440, 900}
+            set position of w to {72, 45}
+            set size of w to {1296, 810}
           end if
         end try
       end repeat
