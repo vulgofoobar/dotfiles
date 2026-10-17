@@ -4,7 +4,9 @@ tap 'homebrew/bundle'
 tap 'puma/puma'
 tap 'felixkratz/formulae'
 tap 'nikitabobko/tap'
+tap 'koekeishiya/formulae'
 
+# .dev-tools
 brew 'zsh'
 brew 'ack'
 brew 'git'
@@ -18,8 +20,6 @@ brew 'openssl'
 brew 'node'
 brew 'postgresql'
 brew 'puma/puma/puma-dev'
-brew 'ruby-build'
-brew 'rbenv'
 brew 'wget'
 brew 'libksba'
 brew 'libunistring'
@@ -34,7 +34,18 @@ brew 'mas'
 brew 'tree'
 brew 'duti'
 brew 'cmatrix'
-brew 'openvpn'
+brew 'telnet'
+cask 'iterm2'
+brew 'docker'
+brew 'docker-compose'
+brew 'colima'
+
+# .menu-bar
+brew 'felixkratz/formulae/sketchybar', trusted: true
+cask 'hiddenbar'
+
+# .touch-bar
+cask 'mtmr'
 
 # .model managers
 brew 'ollama'
@@ -43,16 +54,16 @@ brew 'ollama'
 brew tap zylon-ai/tap
 brew 'private-gpt'
 
-# .browser
+# .browsers
+cask 'brave-browser'
 # cask 'firefox'
 # cask 'google-chrome'
 # cask 'microsoft-edge'
-cask 'zen'
+# cask 'zen'
 
 # .spotlight
-# cask 'alfred'
 cask 'raycast'
-cask 'nikitabobko/tap/aerospace'
+# cask 'alfred'
 
 # .commu
 # cask 'slack'
@@ -60,20 +71,21 @@ cask 'nikitabobko/tap/aerospace'
 # cask 'whatsapp'
 
 # .utility
+brew 'koekeishiya/formulae/yabai', trusted: true
 cask 'anki'
 cask 'stats'
 cask 'appcleaner'
 cask 'balenaetcher'
 cask 'vlc'
-cask 'mtmr'
-cask 'hiddenbar'
-cask 'megasync'
 cask 'onionshare'
 cask 'sonic-pi'
-cask 'karabiner-elements'
-mas "Magnet", id: 441258766
+cask 'nikitabobko/tap/aerospace', trusted: true
+# cask 'megasync'
+# cask 'blender'
+# cask 'karabiner-elements'
+# mas "Magnet", id: 441258766
 # cask 'tageditor'
-mas "Tag Editor 2", id: 984278082
+# mas "Tag Editor 2", id: 984278082
 
 # .fonts
 cask 'font-hack-nerd-font'
@@ -82,18 +94,11 @@ cask 'font-hack-nerd-font'
 cask 'obsidian'
 cask 'notion'
 
-# .dev
-brew 'telnet'
-cask 'iterm2'
-brew 'docker'
-brew 'docker-compose'
-brew 'colima'
-cask 'pritunl'
-brew 'felixkratz/formulae/sketchybar', trusted: true
-cask 'nikitabobko/tap/aerospace', trusted: true
-
 # .editor
 cask 'visual-studio-code'
+cask 'zed'
 
 # .vpn
 cask 'surfshark'
+brew 'openvpn'
+cask 'pritunl'
